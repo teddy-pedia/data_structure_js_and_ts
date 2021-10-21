@@ -146,5 +146,5 @@ for (let i = 1; i < 10; i++) {
 console.log(heap.extract())
 console.log(heap)
 
-heap.heapify([5, 4, 3, 2, 1])
+heap.heapify([5, 4, 3, 2, 1]) // test
 console.log(heap)
