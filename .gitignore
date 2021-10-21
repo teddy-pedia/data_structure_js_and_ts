@@ -1,0 +1,20 @@
+# Project exclude paths
+/node_modules/
+/src/ts/algorithm/graph/breadth-first-search.js
+/src/ts/algorithm/graph/breadth-first-search.js.map
+/src/ts/algorithm/graph/width-first-search.js
+/src/ts/algorithm/graph/width-first-search.js.map
+/src/ts/data-structure/models/linked-list-models.js
+/src/ts/data-structure/models/linked-list-models.js.map
+/src/ts/data-structure/models/value-pair.js
+/src/ts/data-structure/models/value-pair.js.map
+/src/ts/data-structure/dictionary.js
+/src/ts/data-structure/dictionary.js.map
+/src/ts/data-structure/graph.js
+/src/ts/data-structure/graph.js.map
+/src/ts/data-structure/linked-list.js
+/src/ts/data-structure/linked-list.js.map
+/src/ts/data-structure/queue.js
+/src/ts/data-structure/queue.js.map
+/src/ts/util.js
+/src/ts/util.js.map
