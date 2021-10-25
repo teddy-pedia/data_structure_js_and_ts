@@ -43,7 +43,6 @@ class MinHeap {
      * 先将需要插入的元素插入到堆末尾，再和父节点
      * 进行比较，如果比父节点小，则和父节点进行交换
      * 直到小于父节点或者到达根节点
-     * @param {number}} value
      */
     insert(value) {
         if (value != null) {
@@ -146,5 +145,5 @@ for (let i = 1; i < 10; i++) {
 console.log(heap.extract())
 console.log(heap)
 
-heap.heapify([5, 4, 3, 2, 1]) // test again
+heap.heapify([5, 4, 3, 2, 1])
 console.log(heap)
