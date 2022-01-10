@@ -81,4 +81,4 @@ class Dequeue {
     }
 }
 exports.default = Dequeue;
-//# sourceMappingURL=dequeue.js.map
+//# sourceMappingURL=deque.js.map
