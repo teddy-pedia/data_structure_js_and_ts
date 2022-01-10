@@ -1,10 +1,10 @@
-import Queue from '../../data-structure/queue'
-import Graph from '../../data-structure/graph'
+import Queue from '../../data-structures/queue'
+import Graph from '../../data-structures/graph'
 
 const Colors = {
     WHITE: 0,
     GREY: 1,
-    BLACK: 2
+    BLACK: 2,
 }
 
 const initializeColor = (vertices: (string | number)[]) => {
@@ -30,7 +30,8 @@ export const breadthFirstSearch = (graph: Graph, callback: Function) => {
         color[u] = Colors.BLACK
         for (let i = 0; i < neighbors.length; i++) {
             const w = neighbors[i]
-            if (color[w] === Colors.WHITE) { // u的邻居w还未被发现
+            if (color[w] === Colors.WHITE) {
+                // u的邻居w还未被发现
                 color[w] = Colors.GREY
                 queue.enqueue(w)
             }
@@ -43,7 +44,11 @@ export const breadthFirstSearch = (graph: Graph, callback: Function) => {
     }
 }
 
-export const bfs = (graph: Graph, startVertex: string | number, callback: Function) => {
+export const bfs = (
+    graph: Graph,
+    startVertex: string | number,
+    callback: Function
+) => {
     const vertices = graph.getVertices()
     const adjList = graph.getAdjList()
     const color = initializeColor(vertices)
@@ -75,6 +80,6 @@ export const bfs = (graph: Graph, startVertex: string | number, callback: Functi
     }
     return {
         distances,
-        predecessors
+        predecessors,
     }
 }

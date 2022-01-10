@@ -1,1 +1,1 @@
-import Graph from '../../data-structure/graph'
+import Graph from '../../data-structures/graph'
