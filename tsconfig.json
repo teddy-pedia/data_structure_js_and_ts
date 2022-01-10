@@ -1,13 +1,10 @@
 {
-  "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES2017",
-    "sourceMap": true
-  },
-  "include": [
-    "src/ts/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES2017",
+        "sourceMap": true,
+        "outDir": "./dist"
+    },
+    "include": ["src/ts/**/*"],
+    "exclude": ["node_modules", "dist"]
 }
