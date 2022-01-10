@@ -14,10 +14,10 @@ class Queue {
         if (this.isEmpty()) {
             return undefined;
         }
-        const result = this.items[this.lowestCount];
+        const res = this.items[this.lowestCount];
         delete this.items[this.lowestCount];
         this.lowestCount++;
-        return result;
+        return res;
     }
     peek() {
         if (this.isEmpty()) {
@@ -40,19 +40,12 @@ class Queue {
         if (this.isEmpty()) {
             return '';
         }
-        let objString = `${this.items[this.lowestCount]}`;
+        let res = `${this.items[this.lowestCount]}`;
         for (let i = this.lowestCount + 1; i < this.count; i++) {
-            objString = `${objString},${this.items[i]}`;
+            res = `${res},${this.items[i]}`;
         }
-        return objString;
+        return res;
     }
 }
 exports.default = Queue;
-// test
-// const queue = new Queue()
-// queue.enqueue(1)
-// queue.enqueue(2)
-// queue.enqueue(3)
-// queue.enqueue(4)
-// console.log(queue.toString())
 //# sourceMappingURL=queue.js.map
