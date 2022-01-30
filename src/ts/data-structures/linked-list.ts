@@ -1,69 +1,70 @@
-import {Node} from './models/linked-list-models'
-import {defaultEquals, IEqualsFunction} from '../util'
+import { Node } from './models/linked-list-models'
+import { defaultEquals, IEqualsFunction } from '../util'
 
 export default class LinkedList<T> {
     protected count = 0
     protected head: Node<T> | undefined
 
-    constructor(protected equalsFn: IEqualsFunction<T> = defaultEquals) {
-    }
+    constructor(protected equalsFn: IEqualsFunction<T> = defaultEquals) {}
 
     push(element: T) {
         const node = new Node(element)
-        let cur
-
-        if (!this.head) {    // 头节点为空
+        let current
+        if (this.head == null) {
             this.head = node
         } else {
-            cur = this.head
-            // 找到链表尾
-            while (cur.next) {
-                cur = cur.next
+            current = this.head
+            while (current.next != null) {
+                current = current.next
             }
-            cur.next = node
+            current.next = node
         }
         this.count++
     }
 
     getElementAt(index: number) {
-        if (index < 0 || index > this.count)
-            return undefined
-        let node = this.head
-        for (let i = 0; i < index && node != null; i++) {
-            node = node.next
+        if (index >= 0 && index <= this.count) {
+            let node = this.head
+            for (let i = 1; i <= index && node != null; i++) {
+                node = node.next
+            }
+            return node
         }
-        return node
+        return undefined
     }
 
     insert(element: T, index: number) {
-        if (index < 0 || index > this.count)
-            return false
-        const node = new Node(element)
-        if (index === 0) {
-            const cur = this.head
-            node.next = cur
-        } else {
-            const pre = this.getElementAt(index - 1)
-            node.next = pre.next
-            pre.next = node
+        if (index >= 0 && index <= this.count) {
+            const node = new Node(element)
+            if (index === 0) {
+                node.next = this.head
+                this.head = node
+            } else {
+                const prev = this.getElementAt(index - 1)
+                node.next = prev.next
+                prev.next = node
+            }
+            this.count++
+            return true
         }
-        this.count++
-        return true
+        return false
     }
 
     removeAt(index: number) {
-        if (index < 0 || index > this.count)
-            return undefined
-        let cur = this.head
-        if (index === 0) {
-            this.head = cur.next
-        } else {
-            const pre = this.getElementAt(index - 1)
-            cur = pre.next
-            pre.next = cur.next
+        if (index >= 0 && index <= this.count) {
+            let current = this.head
+            if (index === 0) {
+                this.head = current.next
+            } else {
+                const prev = this.getElementAt(index - 1)
+                current = prev.next
+                prev.next = current.next
+                current.next = null
+            }
+            this.count--
+            return current
         }
-        this.count--
-        return cur.element
+        return undefined
     }
 
     remove(element: T) {
@@ -71,26 +72,26 @@ export default class LinkedList<T> {
         return this.removeAt(index)
     }
 
-    indexOf(element: T) {
-        let cur = this.head
-        for(let i = 0 ; i < this.size() && cur != null; i++) {
-            if(this.equalsFn(element, cur.element)) {
+    indexOf(element: T): number {
+        let current = this.head
+        for (let i = 0; i < this.count && current != null; i++) {
+            if (this.equalsFn(element, current.element)) {
                 return i
             }
-            cur = cur.next
+            current = current.next
         }
         return -1
     }
 
-    isEmpty() {
+    isEmpty(): boolean {
         return this.count === 0
     }
 
-    size() {
+    size(): number {
         return this.count
     }
 
-    getHead() {
+    getHead(): Node<T> {
         return this.head
     }
 
@@ -100,30 +101,15 @@ export default class LinkedList<T> {
     }
 
     toString() {
-        if(this.head == null) {
+        if (this.head == null) {
             return ''
         }
         let objString = `${this.head.element}`
-        let cur = this.head.next
-        for(let i = 1 ; i < this.size() && cur != null ; i++) {
-            objString = `${objString}, ${cur.element}`
-            cur = cur.next
+        let current = this.head.next
+        for (let i = 1; i < this.size() && current != null; i++) {
+            objString = `${objString},${current.element}`
+            current = current.next
         }
         return objString
     }
 }
-
-// test
-/*
-const list = new LinkedList()
-list.push(1)
-list.push(2)
-list.push(3)
-list.push(4)
-list.push(5)
-list.push(6)
-console.log(list.toString())
-list.remove(5)
-console.log(list.toString())
-*/
-
