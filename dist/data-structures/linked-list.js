@@ -9,71 +9,74 @@ class LinkedList {
     }
     push(element) {
         const node = new linked_list_models_1.Node(element);
-        let cur;
-        if (!this.head) { // 头节点为空
+        let current;
+        if (this.head == null) {
             this.head = node;
         }
         else {
-            cur = this.head;
-            // 找到链表尾
-            while (cur.next) {
-                cur = cur.next;
+            current = this.head;
+            while (current.next != null) {
+                current = current.next;
             }
-            cur.next = node;
+            current.next = node;
         }
         this.count++;
     }
     getElementAt(index) {
-        if (index < 0 || index > this.count)
-            return undefined;
-        let node = this.head;
-        for (let i = 0; i < index && node != null; i++) {
-            node = node.next;
+        if (index >= 0 && index <= this.count) {
+            let node = this.head;
+            for (let i = 1; i <= index && node != null; i++) {
+                node = node.next;
+            }
+            return node;
         }
-        return node;
+        return undefined;
     }
     insert(element, index) {
-        if (index < 0 || index > this.count)
-            return false;
-        const node = new linked_list_models_1.Node(element);
-        if (index === 0) {
-            const cur = this.head;
-            node.next = cur;
+        if (index >= 0 && index <= this.count) {
+            const node = new linked_list_models_1.Node(element);
+            if (index === 0) {
+                node.next = this.head;
+                this.head = node;
+            }
+            else {
+                const prev = this.getElementAt(index - 1);
+                node.next = prev.next;
+                prev.next = node;
+            }
+            this.count++;
+            return true;
         }
-        else {
-            const pre = this.getElementAt(index - 1);
-            node.next = pre.next;
-            pre.next = node;
-        }
-        this.count++;
-        return true;
+        return false;
     }
     removeAt(index) {
-        if (index < 0 || index > this.count)
-            return undefined;
-        let cur = this.head;
-        if (index === 0) {
-            this.head = cur.next;
+        if (index >= 0 && index <= this.count) {
+            let current = this.head;
+            if (index === 0) {
+                this.head = current.next;
+            }
+            else {
+                const prev = this.getElementAt(index - 1);
+                current = prev.next;
+                prev.next = current.next;
+                current.next = null;
+            }
+            this.count--;
+            return current;
         }
-        else {
-            const pre = this.getElementAt(index - 1);
-            cur = pre.next;
-            pre.next = cur.next;
-        }
-        this.count--;
-        return cur.element;
+        return undefined;
     }
     remove(element) {
         const index = this.indexOf(element);
         return this.removeAt(index);
     }
     indexOf(element) {
-        let cur = this.head;
-        for (let i = 0; i < this.size() && cur != null; i++) {
-            if (this.equalsFn(element, cur.element)) {
+        let current = this.head;
+        for (let i = 0; i < this.count && current != null; i++) {
+            if (this.equalsFn(element, current.element)) {
                 return i;
             }
-            cur = cur.next;
+            current = current.next;
         }
         return -1;
     }
@@ -95,26 +98,13 @@ class LinkedList {
             return '';
         }
         let objString = `${this.head.element}`;
-        let cur = this.head.next;
-        for (let i = 1; i < this.size() && cur != null; i++) {
-            objString = `${objString}, ${cur.element}`;
-            cur = cur.next;
+        let current = this.head.next;
+        for (let i = 1; i < this.size() && current != null; i++) {
+            objString = `${objString},${current.element}`;
+            current = current.next;
         }
         return objString;
     }
 }
 exports.default = LinkedList;
-// test
-/*
-const list = new LinkedList()
-list.push(1)
-list.push(2)
-list.push(3)
-list.push(4)
-list.push(5)
-list.push(6)
-console.log(list.toString())
-list.remove(5)
-console.log(list.toString())
-*/
 //# sourceMappingURL=linked-list.js.map

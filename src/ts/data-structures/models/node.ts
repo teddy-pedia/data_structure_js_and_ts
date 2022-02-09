@@ -1,8 +1,10 @@
-export class Node<T> {
-    private element: T
-    private next: Node<T>
-    constructor(element: T) {
-        this.element = element
-        this.next = undefined
+export class Node<K> {
+    left: Node<K>
+    right: Node<K>
+
+    constructor(public key: K) {}
+
+    toString() {
+        return `${this.key}`
     }
 }
